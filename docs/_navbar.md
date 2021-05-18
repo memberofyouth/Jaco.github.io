@@ -1,2 +1,4 @@
-### docsify 安装使用 
-* [指南](https://docsify.js.org/)
+### 
+<!-- * [指南](https://docsify.js.org/) -->
+* [首页](/)
+* [doc](README)
