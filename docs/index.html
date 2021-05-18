@@ -6,8 +6,92 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="./index.css">
+  <!-- Theme: Defaults -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-defaults.css" disabled>
+  <!-- Theme: Simple (latest v0.x.x) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css" >
+  <!-- Theme: Simple Dark -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css" disabled>
 </head>
+<style>
+  :root {
+    /* Reduce the font size */
+    --base-font-size: 14px;
+
+    /* Change the theme color hue */
+    /*--theme-hue: 325;*/
+    /*--theme-color: purple;*/
+
+    --copycode-background: #808080;
+    --copycode-color     : #fff;
+    /* Change the sidebar bullets */
+    /*--sidebar-nav-link-before-content: '😀';*/
+    --sidebar-nav-link-before-content: '';
+
+    /*分页*/
+    --pagination-border-top            : 1px solid var(--mono-tint2);
+    --pagination-chevron-height        : 0.8em;
+    --pagination-chevron-stroke        : currentColor;
+    --pagination-chevron-stroke-linecap: round;
+    --pagination-chevron-stroke-width  : 1px;
+    --pagination-label-color           : ;
+    --pagination-label-font-size       : var(--font-size-s);
+    --pagination-title-color           : ;
+    --pagination-title-font-size       : var(--font-size-l);
+    /*搜索*/
+    --search-background                      : ;
+    --search-margin                          : 1.5rem 0 0;
+    --search-padding                         : ;
+
+    /* Clear Button */
+    --search-clear-icon-color1               : ;
+    --search-clear-icon-color2               : ;
+
+    /* Input */
+    --search-input-background-color          : ;
+    --search-input-background-color--focus   : ;
+    --search-input-background-image          : ;
+    --search-input-background-image--focus   : ;
+    --search-input-background-position       : ;
+    --search-input-background-position--focus: ;
+    --search-input-background-repeat         : no-repeat;
+    --search-input-background-size           : ;
+    --search-input-background-size--focus    : ;
+    --search-input-border-color              : var(--mono-tint1);
+    --search-input-border-radius             : ;
+    --search-input-border-width              : 1px;
+    --search-input-color                     : ;
+    --search-input-font-size                 : ;
+    --search-input-margin                    : ;
+    --search-input-padding                   : 0.5em;
+    --search-input-placeholder-color         : ;
+    --search-input-transition                : ;
+
+    /* Order */
+    --search-flex-order                      : 1;
+
+    /* Results */
+    --search-result-heading-color            : var(--heading-color);
+    --search-result-heading-font-size        : var(--base-font-size);
+    --search-result-heading-font-weight      : normal;
+    --search-result-heading-margin           : 0 0 0.25em;
+    --search-result-item-border-color        : var(--mono-tint2);
+    --search-result-item-border-style        : solid;
+    --search-result-item-border-width        : 0 0 1px 0;
+    --search-result-item-color               : ;
+    --search-result-item-font-size           : ;
+    --search-result-item-font-weight         : normal;
+    --search-result-item-margin              : ;
+    --search-result-item-padding             : 1em 0;
+    --search-result-keyword-background       : var(--mark-background);
+    --search-result-keyword-border-radius    : var(--border-radius-s);
+    --search-result-keyword-color            : var(--mark-color);
+    --search-result-keyword-font-weight      : normal;
+    --search-result-keyword-margin           : 0 0.1em;
+    --search-result-keyword-padding          : 0.2em 0;
+  }
+</style>
 <body>
   <nav>
     <a href="#/">EN</a>
@@ -17,17 +101,49 @@
   <script>
     window.$docsify = {
       name: '',
-      repo: '',
+      repo: 'https://github.com/memberofyouth/Jaco.github.io.git',
+      logo: '/_media/icon.svg',
       coverpage:true,
       loadNavbar:true,
       loadSidebar:true,
       subMaxLevel: 2,
       alias: {
         '/.*/_sidebar.md': '/_sidebar.md'
-      }
+      },
+      themeable: {
+        readyTransition : true, // default
+        responsiveTables: true  // default
+      },
+      copyCode: {
+        buttonText: '复制',
+        errorText: 'Error',
+        successText: 'OK!'
+      },
+      search: {
+        paths: 'auto',
+        placeholder: '🔍 Type to search ',
+        noData: '😞 No Results! ',
+        depth: 6
+      },
+      pagination: {
+        previousText: '上一章节',
+        nextText: '下一章节'
+      },
     }
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+
+  <!-- docsify-themeable (latest v0.x.x) -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
+
+  <!--代码块复制插件-->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+
+  <!--分页插件-->
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <!--搜索-->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js" type="text/javascript"></script>
 </body>
 </html>
