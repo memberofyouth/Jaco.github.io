@@ -1,0 +1,4 @@
+```
+hostnamectl set-hostname  xxx
+```
+
