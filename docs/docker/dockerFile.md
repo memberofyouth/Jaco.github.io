@@ -2,35 +2,67 @@
 ```yaml
 version: '3.5'
 services:
-    razzil-redis:
+    redis:
         image: redis:5.0.4-alpine
-        container_name: razzil-redis
-        environment:
-            - ALLOW_EMPTY_PASSWORD=yes
+        container_name: redis
+        command: redis-server --requirepass 123456
         volumes:
-            - /var/zhigui/volumes/razzil/redis/:/data
+        - /var/zhigui/volumes/razzil/redis/:/data
         ports:
-            - 6379:6379  
+        - 6379:6379  
+
+environment:
+            - ALLOW_EMPTY_PASSWORD=yes
 ```
+
+```
+docker run -p 6379:6379 --name redis --restart=always -v C:\redis\data:/data -v C:\redis\conf\redis.conf:/etc/redis/redis.conf -d redis:3.2 redis-server /etc/redis/redis.conf 
+
+```
+
+
+
+
 
 #### mysql
 
 ```yaml
-version: '3.5'
+version: '3.6'
 services:
-    razzil-mysql:
-        image: mysql:8.0.15
-        container_name: razzil-mysql
-        volumes:
-            - /var/zhigui/volumes/razzil/mysql/:/var/lib/mysql/
-        environment:
-            - MYSQL_USER=root
-            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-            - MYSQL_DATABASE=razzil
-        ports:
-            - 3306:3306
-        command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --collation-server=utf8mb4_unicode_ci --explicit_defaults_for_timestamp
+  mysql:
+    container_name: mysql
+    image: mysql:8.0.15
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --lower_case_table_names=1
+      --character_set_server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --explicit_defaults_for_timestamp=true
+    volumes:
+      - /home/software/mysql/data:/var/lib/mysql/
+      - /home/software/mysql/config:/etc/mysql/conf.d
+    ports:
+      - 3306:3306
+    networks:
+      - default-network
+    restart: always
+networks:
+  default-network:
+    driver: bridge
+
+
 ```
+
+```bash
+-- 创建用户
+CREATE USER 'username'@'%' IDENTIFIED BY 'password';
+
+-- 授权使用数据库
+GRANT ALL ON *.* TO 'username'@'%';
+```
+
 
 
 #### mysql-3

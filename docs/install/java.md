@@ -28,3 +28,38 @@ export PATH=$PATH:$JAVA_HOME/bin
 ln -s /usr/local/java/jdk1.8.0_171/bin/java /usr/bin/java
 
 java -version 查看
+
+
+
+
+
+## yum安装
+
+```bash
+yum install java-1.8.0-openjdk-devel.x86_64
+```
+
+
+
+```bash
+vi  /etc/profile
+```
+
+
+
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0
+export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+```
+
+
+
+```bash
+source  /etc/profile
+```
+
+```bash
+java -version
+```
