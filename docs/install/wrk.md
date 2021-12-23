@@ -12,3 +12,8 @@ make
 sudo cp wrk /usr/local/bin
 ```
 
+
+
+测试：  16核  400个并发  30秒
+
+wrk -t16 -c400 -d30s http://192.168.2.44/api/platform/job/putIntoUseWarning
