@@ -1,4 +1,30 @@
 ```
+ssh设置
+
+删除.ssh下所有文件
+
+设置用户名、邮箱
+
+git config --global user.name 'ringluck'
+
+git config --global user.email 'mrzlive@163.com'
+
+git config --list
+
+生成公私钥
+
+ssh-keygen -t rsa -C "mrzlive@163.com"
+
+
+```
+
+
+
+
+
+
+
+```
 cd ~
 
 touch .git-credentials
