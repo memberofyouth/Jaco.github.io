@@ -40,13 +40,6 @@ SELECT
 FROM orders o left join digital_collections dc on o.digital_collection_id = dc.id  where o.status = 1 and handling_fee = 0.00 order by o.created_at desc
 
 
-
-@听风 @dyx   今天有空帮星元数做下这三个用户的数据迁移。15210882535、13210156370、18301180803 
-18301180803 838316af-5f69-4b57-a607-839346f4b280  
-13210156370 b9bec7ec-081b-40ed-8b49-48ca90fbf4b9
-这三个用户 在预发开通了汇元，在正式无法再开通。
-
-
 SET block_encryption_mode = 'aes-256-ecb';
 aes_decrypt(from_base64(phone), 'a4e97ea51a347077f6588cca8f1fc406') = '18690739777'
 
