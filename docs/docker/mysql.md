@@ -7,7 +7,12 @@ services:
     container_name: mysql
     image: mysql:8.0.15
     environment:
+      TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: 123456
+      # 初始化用户(不能是root 会报错, 后续需要给新用户赋予权限)
+      MYSQL_USER: user
+      # 用户密码
+      MYSQL_PASSWORD: 123456
     command:
       --default-authentication-plugin=mysql_native_password
       --lower_case_table_names=1
@@ -15,8 +20,9 @@ services:
       --collation-server=utf8mb4_unicode_ci
       --explicit_defaults_for_timestamp=true
     volumes:
-      - /home/software/mysql/data:/var/lib/mysql/
-      - /home/software/mysql/config:/etc/mysql/conf.d
+      - /data:/var/lib/mysql/
+      - /etc/localtime:/etc/localtime:ro
+      - /home/mysql/conf/:/etc/mysql/conf.d/
     ports:
       - 3306:3306
     networks:
@@ -25,9 +31,32 @@ services:
 networks:
   default-network:
     driver: bridge
+```
+
+### conf 文件夹创建my.conf
+
+```shell
+touch my.conf
+
+[client]
+default-character-set = utf8mb4
+[mysql]
+default-character-set = utf8mb4
+[mysqld]
+character-set-client-handshake = FALSE
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+init_connect='SET NAMES utf8mb4'
+sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
 
 
 ```
+
+修改密码：
+
+use mysql;
+
+ALTER USER ‘test’@‘localhost’ IDENTIFIED WITH MYSQL_NATIVE_PASSWORD BY ‘新密码’;
 
 ```bash
 -- 创建用户
@@ -35,6 +64,13 @@ CREATE USER 'username'@'%' IDENTIFIED BY 'password';
 
 -- 授权使用数据库
 GRANT ALL ON *.* TO 'username'@'%';
+
+GRANT ALL PRIVILEGES ON *.* TO ‘myuser‘@‘%‘ IDENTIFIED BY ‘mypass‘ WITH GRANT OPTION;
+
+GRANT ALL PRIVILEGES ON xinlian.* TO 'xinlian';
+
+撤销所有权限：
+REVOKE ALL PRIVILEGES,GRANT OPTION FROM 'xinlian';
 ```
 
 
@@ -59,6 +95,12 @@ services:
             - 3306:3306
         command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --collation-server=utf8mb4_unicode_ci --explicit_defaults_for_timestamp
 ```
+
+
+
+
+
+
 
 #### mysql-5.7
 

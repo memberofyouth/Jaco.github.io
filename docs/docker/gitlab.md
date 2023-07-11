@@ -46,6 +46,3 @@ cd /opt/gitlab/bin
 通过 u.save!进行保存
 
 
-
-
-

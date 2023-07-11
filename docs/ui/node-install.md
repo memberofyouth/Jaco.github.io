@@ -39,7 +39,7 @@ ln -s /usr/local/bin/node/bin/node  /usr/local/bin/node
 
 npm install -g json-server
 
-nohup json-server --watch ./mock/db.json --port 9999 &
+nohup json-server --watch db.json --port 9999 &
 ```
 
 
